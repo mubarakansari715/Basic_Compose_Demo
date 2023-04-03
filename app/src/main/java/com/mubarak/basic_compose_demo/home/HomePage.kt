@@ -8,9 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @Composable
-fun HomePage() {
+fun HomePage(navController: NavController,) {
     val context = LocalContext.current
     val puppies = remember { DataProvider.puppyList }
     LazyColumn(
