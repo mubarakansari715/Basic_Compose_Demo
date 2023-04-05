@@ -14,6 +14,7 @@ import androidx.navigation.NavController
 fun HomePage(navController: NavController,) {
     val context = LocalContext.current
     val puppies = remember { DataProvider.puppyList }
+
     LazyColumn(
         contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
     ) {

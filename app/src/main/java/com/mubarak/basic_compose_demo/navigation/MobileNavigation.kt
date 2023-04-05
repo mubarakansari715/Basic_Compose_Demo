@@ -2,6 +2,7 @@ package com.mubarak.basic_compose_demo.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -13,6 +14,7 @@ import com.mubarak.basic_compose_demo.post.viewmodel.PostViewModel
 fun MobileNavigation() {
 
     val navController = rememberNavController()
+    val appContext = LocalContext.current.applicationContext
 
     NavHost(navController = navController, startDestination = "login") {
 
@@ -24,7 +26,7 @@ fun MobileNavigation() {
             //LoginPageDesign(navController)
            // PostCompose()
             val viewModel = remember { PostViewModel() }
-            PostDesignScreen()
+            PostDesignScreen(appContext)
         }
     }
 }
