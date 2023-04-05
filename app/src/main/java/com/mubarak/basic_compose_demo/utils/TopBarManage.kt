@@ -11,10 +11,12 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 
 @Composable
-fun TopBarManage() {
+fun TopBarManage(
+    title:String,
+) {
     TopAppBar(
         title = {
-            Text(text = "My Compose App")
+            Text(text = title)
         },
         navigationIcon = {
             IconButton(onClick = {}) {

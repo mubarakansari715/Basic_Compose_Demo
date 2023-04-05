@@ -119,14 +119,16 @@ fun LoginPageDesign(
 
                         Button(
                             onClick = {
-                                navController.navigate("home")
+                                navController.navigate("post")
                                 showDialog = false
-                                Toast.makeText(context, "Clicked :: Yes", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(context, "Clicked :: Yes", Toast.LENGTH_SHORT).show()
                             },
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
                             elevation = null
                         ) {
-                            Text(text = stringResource(id = R.string.key_yes))
+                           // Text(text = stringResource(id = R.string.key_yes))
+                            Text(text = "API Calling Data Show")
+
                         }
 
                     },
@@ -135,13 +137,16 @@ fun LoginPageDesign(
                         Button(
                             onClick = {
                                 showDialog = false
-                                Toast.makeText(context, "Clicked :: Not", Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(context, "Clicked :: Not", Toast.LENGTH_SHORT).show()
+                                navController.navigate("home")
                             },
 
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color.Transparent),
                             elevation = null
                         ) {
-                            Text(text = stringResource(R.string.key_no))
+                            //Text(text = stringResource(R.string.key_no))
+                            Text(text = "Dummy Data Show")
+
                         }
                     }
                 )

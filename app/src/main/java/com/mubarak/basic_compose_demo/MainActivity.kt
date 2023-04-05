@@ -19,7 +19,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
 
                 Scaffold(
-                    topBar = { TopBarManage() },
+                    topBar = { TopBarManage("Login") },
                     content = { MobileNavigation() })
             }
         }
