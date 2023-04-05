@@ -24,17 +24,16 @@ import kotlinx.coroutines.launch
 @Composable
 fun PostDesignScreen(
     toolBarData: (ToolBarData) -> Unit,
+    viewModel: PostViewModel
 ) {
     val context = LocalContext.current
-    val viewModel = remember { PostViewModel() }
-    //val postObserverState by viewModel.posts.observeAsState()
     var isLoading by remember { mutableStateOf(false) }
     val postList = remember { viewModel.postsList }
 
     LaunchedEffect(Unit) {
         toolBarData(
             ToolBarData(
-                title = "Post Listing",
+                title = "From Api Post Listing",
                 isVisible = true,
                 isDrawerIcon = false,
                 isBackIcon = true

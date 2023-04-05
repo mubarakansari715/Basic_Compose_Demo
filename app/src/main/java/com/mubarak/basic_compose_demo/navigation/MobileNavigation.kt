@@ -2,7 +2,6 @@ package com.mubarak.basic_compose_demo.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -21,18 +20,16 @@ fun MobileNavigation(
     NavHost(navController = navController, startDestination = "login") {
 
         composable("home") {
-            HomePage(navController)
+            HomePage(navController, toolBarData = topBar)
         }
 
         composable("login") {
             LoginPageDesign(navController = navController, toolBarData = topBar)
-            // PostCompose()
-
         }
 
-        composable("post") {
+        composable("post") { backStackEntry ->
             val viewModel = remember { PostViewModel() }
-            PostDesignScreen(toolBarData = topBar)
+            PostDesignScreen(toolBarData = topBar, viewModel)
         }
     }
 }
