@@ -106,7 +106,7 @@ fun LoginPageDesign(
             }
 
             //Signup Button
-            Button(onClick = { navController.navigate("signup") }) {
+            Button(onClick = { navController.navigate("signup") },  enabled = false) {
                 Text(text = "Sign Up")
             }
 
