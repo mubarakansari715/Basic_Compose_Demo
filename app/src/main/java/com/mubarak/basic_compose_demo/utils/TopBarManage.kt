@@ -7,12 +7,14 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 
 @Composable
 fun TopBarManage(
     toolBarData: ToolBarData,
+    onDrawerIconClick: () -> Unit,
     onBackIconClick: () -> Unit,
 ) {
     TopAppBar(
@@ -20,15 +22,33 @@ fun TopBarManage(
             Text(text = toolBarData.title)
         },
         navigationIcon = {
-            IconButton(onClick = {}) {
+            /*IconButton(onClick = {}) {
                 Icon(Icons.Filled.Menu, contentDescription = "menu")
+            }*/
+
+            if (toolBarData.isDrawerIcon) {
+                IconButton(onClick = onDrawerIconClick) {
+                    Icon(
+                        imageVector = Icons.Default.Menu,
+                        contentDescription = "Toggle drawer"
+                    )
+                }
+            }
+
+            if (toolBarData.isBackIcon) {
+                IconButton(onClick = onBackIconClick) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Back arrow"
+                    )
+                }
             }
         },
         actions = {
 
             if (toolBarData.isBackIcon) {
                 IconButton(onClick = { onBackIconClick.invoke() }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "notification")
+                    Icon(Icons.Filled.Notifications, contentDescription = "notification")
                 }
             }
 

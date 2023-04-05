@@ -41,7 +41,7 @@ fun LoginPageDesign(
             ToolBarData(
                 title = "Login Page",
                 isVisible = true,
-                isDrawerIcon = false,
+                isDrawerIcon = true,
                 isBackIcon = false
             )
         )

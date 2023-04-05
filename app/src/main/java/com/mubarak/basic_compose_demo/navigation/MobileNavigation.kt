@@ -18,8 +18,6 @@ fun MobileNavigation(
     topBar: (ToolBarData) -> Unit,
 ) {
 
-    val appContext = LocalContext.current.applicationContext
-
     NavHost(navController = navController, startDestination = "login") {
 
         composable("home") {
