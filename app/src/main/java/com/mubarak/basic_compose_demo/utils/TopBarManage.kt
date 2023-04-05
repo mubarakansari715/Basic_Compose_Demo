@@ -5,18 +5,19 @@ import androidx.compose.material.IconButton
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
 
 @Composable
 fun TopBarManage(
-    title:String,
+    toolBarData: ToolBarData,
+    onBackIconClick: () -> Unit,
 ) {
     TopAppBar(
         title = {
-            Text(text = title)
+            Text(text = toolBarData.title)
         },
         navigationIcon = {
             IconButton(onClick = {}) {
@@ -24,8 +25,11 @@ fun TopBarManage(
             }
         },
         actions = {
-            IconButton(onClick = { }) {
-                Icon(Icons.Filled.Notifications, contentDescription = "notification")
+
+            if (toolBarData.isBackIcon) {
+                IconButton(onClick = { onBackIconClick.invoke() }) {
+                    Icon(Icons.Filled.ArrowBack, contentDescription = "notification")
+                }
             }
 
             IconButton(onClick = { }) {

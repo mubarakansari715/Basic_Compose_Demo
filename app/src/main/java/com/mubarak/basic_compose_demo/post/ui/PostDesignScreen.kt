@@ -3,15 +3,11 @@ package com.mubarak.basic_compose_demo.post.ui
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
@@ -21,24 +17,29 @@ import com.mubarak.basic_compose_demo.network.ResponseHandler
 import com.mubarak.basic_compose_demo.post.item.PostItemDesign
 import com.mubarak.basic_compose_demo.post.model.Post
 import com.mubarak.basic_compose_demo.post.viewmodel.PostViewModel
+import com.mubarak.basic_compose_demo.utils.ShowLoader
+import com.mubarak.basic_compose_demo.utils.ToolBarData
 import kotlinx.coroutines.launch
 
 @Composable
 fun PostDesignScreen(
-    appContext: Context
+    toolBarData: (ToolBarData) -> Unit,
 ) {
     val context = LocalContext.current
     val viewModel = remember { PostViewModel() }
     //val postObserverState by viewModel.posts.observeAsState()
     var isLoading by remember { mutableStateOf(false) }
-    val postList = viewModel.postsList
-
-    /***
-     * Show Loader on Screen
-     */
-    LoaderShow(isLoading)
+    val postList = remember { viewModel.postsList }
 
     LaunchedEffect(Unit) {
+        toolBarData(
+            ToolBarData(
+                title = "Post Listing",
+                isVisible = true,
+                isDrawerIcon = false,
+                isBackIcon = true
+            )
+        )
         viewModel.viewModelScope.launch {
             viewModel.posts.collect { postObserverState ->
 
@@ -48,10 +49,10 @@ fun PostDesignScreen(
                         isLoading = true
                     }
                     is ResponseHandler.Empty -> {
-
+                        isLoading = false
                     }
                     is ResponseHandler.OnFailed -> {
-
+                        isLoading = false
                     }
                     is ResponseHandler.OnSuccessResponse<List<Post>> -> {
                         isLoading = false
@@ -70,27 +71,8 @@ fun PostDesignScreen(
     }
 
     DataPost(context = context, post = postList)
+    ShowLoader(isLoading)
 
-}
-
-@Composable
-fun LoaderShow(isLoading: Boolean) {
-
-    if (isLoading) {
-        Box(
-            modifier = Modifier.fillMaxSize(),
-            contentAlignment = Alignment.Center
-        ) {
-            CircularProgressIndicator()
-        }
-    } else {
-        // your main UI code here
-/*
-        Scaffold(
-            topBar = { TopBarManage("Post Listing") },
-            content = {  })*/
-
-    }
 }
 
 @Composable

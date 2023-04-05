@@ -15,18 +15,18 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.mubarak.basic_compose_demo.R
+import com.mubarak.basic_compose_demo.utils.ToolBarData
 
 @Composable
 fun LoginPageDesign(
     navController: NavController,
+    toolBarData: (ToolBarData) -> Unit,
 ) {
 
     var userName by remember { mutableStateOf("") }
@@ -35,6 +35,17 @@ fun LoginPageDesign(
     var showDialog by remember { mutableStateOf(false) }
 
     val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        toolBarData(
+            ToolBarData(
+                title = "Login Page",
+                isVisible = true,
+                isDrawerIcon = false,
+                isBackIcon = false
+            )
+        )
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -106,7 +117,7 @@ fun LoginPageDesign(
             }
 
             //Signup Button
-            Button(onClick = { navController.navigate("signup") },  enabled = false) {
+            Button(onClick = { navController.navigate("signup") }, enabled = false) {
                 Text(text = "Sign Up")
             }
 
@@ -126,7 +137,7 @@ fun LoginPageDesign(
                             colors = ButtonDefaults.buttonColors(backgroundColor = Color.White),
                             elevation = null
                         ) {
-                           // Text(text = stringResource(id = R.string.key_yes))
+                            // Text(text = stringResource(id = R.string.key_yes))
                             Text(text = "API Calling Data Show")
 
                         }

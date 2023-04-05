@@ -3,12 +3,18 @@ package com.mubarak.basic_compose_demo
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.mubarak.basic_compose_demo.navigation.MobileNavigation
 import com.mubarak.basic_compose_demo.ui.theme.Basic_Compose_DemoTheme
+import com.mubarak.basic_compose_demo.utils.ToolBarData
 import com.mubarak.basic_compose_demo.utils.TopBarManage
 
 class MainActivity : ComponentActivity() {
@@ -17,10 +23,28 @@ class MainActivity : ComponentActivity() {
         setContent {
             Basic_Compose_DemoTheme {
                 // A surface container using the 'background' color from the theme
+                val topBarState = remember { (mutableStateOf(ToolBarData())) }
+                val navController = rememberNavController()
 
-                Scaffold(
-                    topBar = { TopBarManage("Login") },
-                    content = { MobileNavigation() })
+                Box(modifier = Modifier) {
+                    Scaffold(
+                        topBar = {
+                            //TopBarManage("Login")
+                            if (topBarState.value.isVisible) {
+                                TopBarManage(
+                                    toolBarData = topBarState.value,
+                                    onBackIconClick = {
+                                        navController.navigateUp()
+                                    })
+                            }
+                        },
+                        content = {
+                            MobileNavigation(
+                                navController = navController,
+                                topBar = { topBarState.value = it })
+                        })
+                }
+
             }
         }
     }
