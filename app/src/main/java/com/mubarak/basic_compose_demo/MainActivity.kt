@@ -17,8 +17,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             Basic_Compose_DemoTheme {
                 // A surface container using the 'background' color from the theme
+
                 Scaffold(
-                    topBar = {TopBarManage()},
+                    topBar = { TopBarManage() },
                     content = { MobileNavigation() })
             }
         }
