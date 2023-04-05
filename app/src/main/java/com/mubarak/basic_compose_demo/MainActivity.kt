@@ -37,7 +37,6 @@ class MainActivity : ComponentActivity() {
                 Box(modifier = Modifier) {
                     Scaffold(
                         topBar = {
-                            //TopBarManage("Login")
                             if (topBarState.value.isVisible) {
                                 TopBarManage(
                                     toolBarData = topBarState.value,

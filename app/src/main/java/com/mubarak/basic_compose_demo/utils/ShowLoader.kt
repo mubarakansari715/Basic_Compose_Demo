@@ -17,12 +17,5 @@ fun ShowLoader(isLoading: Boolean) {
         ) {
             CircularProgressIndicator()
         }
-    } else {
-        // your main UI code here
-/*
-        Scaffold(
-            topBar = { TopBarManage("Post Listing") },
-            content = {  })*/
-
     }
 }

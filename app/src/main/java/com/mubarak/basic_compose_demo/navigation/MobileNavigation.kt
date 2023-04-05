@@ -5,6 +5,8 @@ import androidx.compose.runtime.remember
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.mubarak.basic_compose_demo.categorylisting.ui.CategoryListing
+import com.mubarak.basic_compose_demo.categorylisting.viewmodel.CategoryViewModel
 import com.mubarak.basic_compose_demo.home.HomePage
 import com.mubarak.basic_compose_demo.login.LoginPageDesign
 import com.mubarak.basic_compose_demo.post.ui.PostDesignScreen
@@ -28,8 +30,14 @@ fun MobileNavigation(
         }
 
         composable("post") { backStackEntry ->
+
             val viewModel = remember { PostViewModel() }
             PostDesignScreen(toolBarData = topBar, viewModel)
+        }
+
+        composable("product") {
+            val viewModels = remember { CategoryViewModel() }
+            CategoryListing(toolBarData = topBar, viewModel = viewModels)
         }
     }
 }

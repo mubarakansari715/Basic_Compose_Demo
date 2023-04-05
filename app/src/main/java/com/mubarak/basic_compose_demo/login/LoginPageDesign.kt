@@ -121,6 +121,11 @@ fun LoginPageDesign(
                 Text(text = "Sign Up")
             }
 
+            //productList
+            Button(onClick = { navController.navigate("product") }) {
+                Text(text = "Product List")
+            }
+
             if (showDialog) {
                 AlertDialog(
                     onDismissRequest = { /*TODO*/ },
