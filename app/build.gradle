@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
 }
 
 android {
@@ -82,4 +84,12 @@ dependencies {
     //compose image load
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
     implementation "com.google.accompanist:accompanist-glide:0.10.0"
+
+
+    //dagger hilt
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
+
+    //hilt viewmodel
+    //implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03'
 }
