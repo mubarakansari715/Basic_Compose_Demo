@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Basic_Compose_DemoTheme {
+                //r
                 // A surface container using the 'background' color from the theme
                 val topBarState = remember { (mutableStateOf(ToolBarData())) }
                 val navController = rememberNavController()
